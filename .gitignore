@@ -1,0 +1,8 @@
+Dataset/
+runs/
+exp10-new/
+YOLOv8/
+*.pt
+*.zip
+*.tar.gz
+.vscode/

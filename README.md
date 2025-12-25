@@ -1,0 +1,2 @@
+# Quick Green: Fast Lanes, Fresh Hope (Ambulance Detection)
+Urbanization and traffic delay ambulances, as fixed signal timers can't prioritize them. Our vision-based system uses video feeds to detect ambulances and grant instant green-light priority. This cheap, scalable solution automates traffic control and reverts to normal once clear, offering a life-saving alternative to costly infrastructure.
