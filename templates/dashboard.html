@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Live Traffic Detection</title>
+<link rel="stylesheet" href="/static/style.css">
+
+</head>
+
+<body>
+
+<div class="header">
+
+<h2>🚦 Smart Traffic Signal Dashboard</h2>
+
+<a href="/" class="new-btn">Upload New Video</a>
+
+</div>
+
+<div class="container">
+
+<div class="video-box">
+
+<img src="{{ url_for('video_feed') }}">
+
+</div>
+
+<div class="signal-box">
+
+<div id="red" class="light red"></div>
+<div id="yellow" class="light"></div>
+<div id="green" class="light"></div>
+
+<div class="signal-text" id="signal">RED</div>
+
+<div class="ambulance-box">
+
+🚑 Ambulances Detected  
+<div id="count">0</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div id="videoEndMessage" style="
+position:fixed;
+top:0;
+left:0;
+width:100vw;
+height:100vh;
+background:rgba(0,0,0,0.8);
+color:white;
+font-size:40px;
+font-weight:bold;
+display:none;
+align-items:center;
+justify-content:center;
+text-align:center;
+flex-direction:column;
+z-index:9999;
+">
+VIDEO FINISHED
+<br>
+Please Upload Another Video
+</div>
+
+
+<script>
+
+setInterval(function(){
+
+fetch('/signal_status')
+
+.then(res=>res.json())
+
+.then(data=>{
+
+document.getElementById("signal").innerHTML=data.signal
+document.getElementById("count").innerHTML=data.count
+
+document.getElementById("red").style.background="gray"
+document.getElementById("yellow").style.background="gray"
+document.getElementById("green").style.background="gray"
+
+if(data.signal=="RED"){
+document.getElementById("red").style.background="red"
+}
+
+if(data.signal=="YELLOW"){
+document.getElementById("yellow").style.background="yellow"
+}
+
+if(data.signal=="GREEN"){
+document.getElementById("green").style.background="green"
+}
+
+if(data.finished){
+document.getElementById("videoEndMessage").style.display="flex"
+}
+
+})
+
+},1000)
+
+</script>
+
+</body>
+
+</html>
